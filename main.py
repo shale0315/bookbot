@@ -1,7 +1,8 @@
 import string
 
 def main():
-    book = get_book()
+    book_path = "books/frankenstein.txt"
+    book = get_book(book_path)
     # print(book)
     num_words = count_words(book)
     # print(f"Word Count: {num_words}")
@@ -10,10 +11,10 @@ def main():
     sorted_dictionary_list = convert_dictionary(letter_count)
     sorted_dictionary_list.sort(reverse=True, key=sort_on)
     # print(sorted_dictionary_list)
-    report(num_words,sorted_dictionary_list)
+    report(book_path,num_words,sorted_dictionary_list)
 
-def get_book():
-    with open("books/frankenstein.txt") as f:
+def get_book(book_path):
+    with open(book_path) as f:
         return f.read()
 
 def count_words(text):
@@ -44,8 +45,8 @@ def sort_on(dict):
     for key in dict:
         return dict[key],key
 
-def report(word_count,sorted_list):
-    print(f"--- Begin report of frankenstein.txt ---")
+def report(book,word_count,sorted_list):
+    print(f"--- Begin report of {book} ---")
     print(f"Word Count: {word_count}\n")
     for item in sorted_list:
         for key in item:
